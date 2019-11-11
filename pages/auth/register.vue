@@ -10,15 +10,18 @@
               </v-toolbar>
               <v-card-text>
                 <v-form @submit.prevent="register">
-                  <v-text-field label="Email" name="email" prepend-icon="mdi-email" type="text"/>
-                  <v-text-field label="First Name" name="first_name" prepend-icon="mdi-account" type="text"/>
-                  <v-text-field label="Last Name" name="last_name" prepend-icon="mdi-account" type="text"/>
+                  <v-text-field label="Email" name="email" prepend-icon="mdi-email" type="text" v-model="email"/>
+                  <v-text-field label="First Name" name="first_name" prepend-icon="mdi-account" type="text"
+                                v-model="first_name"/>
+                  <v-text-field label="Last Name" name="last_name" prepend-icon="mdi-account" type="text"
+                                v-model="last_name"/>
                   <v-text-field
                     id="password"
                     label="Password"
                     name="password"
                     prepend-icon="mdi-lock"
                     type="password"
+                    v-model="password"
                   />
                   <v-text-field
                     id="password_confirmation"
@@ -26,12 +29,13 @@
                     name="password_confirmation"
                     prepend-icon="mdi-lock"
                     type="password"
+                    v-model="password_confirmation"
                   />
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer/>
-                <v-btn type="submit" color="primary">Register</v-btn>
+                <v-btn @click="register" color="primary">Register</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -61,13 +65,18 @@
         methods: {
             async register() {
                 try {
-                    await this.$axios.post('register', {
-                        email: this.email,
-                        firs_name: this.firs_name,
-                        last_name: this.last_name,
-                        password: this.password,
-                        password_confirmation: this.password_confirmation
-                    });
+                    await this.$axios.post('auth/register', {
+                            email: this.email,
+                            first_name: this.first_name,
+                            last_name: this.last_name,
+                            password: this.password,
+                            password_confirmation: this.password_confirmation
+                        }, {
+                            headers: {
+                                Accept: 'application/json'
+                            }
+                        }
+                    );
 
                     await this.$auth.loginWith('local', {
                         data: {
