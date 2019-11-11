@@ -1,6 +1,6 @@
 # baseplate-web
 
-> Baseplate Web to work with Baseplate API
+> Baseplate Web to work with Baseplate API created with [Nuxt.js docs](https://nuxtjs.org).
 
 ## Build Setup
 
