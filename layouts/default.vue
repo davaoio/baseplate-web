@@ -2,7 +2,7 @@
   <v-app dark>
     <v-app-bar app absolute elevate-on-scroll>
       <v-toolbar-title>
-        <nuxt-link to="/" class="nuxt-style">Baseplate Web</nuxt-link>
+        <nuxt-link to="/" class="nuxt-style title">Baseplate Web.</nuxt-link>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -54,5 +54,8 @@
   .nuxt-style {
     color: inherit;
     text-decoration: inherit;
+  }
+  .title {
+    font-family: Consolas;
   }
 </style>
